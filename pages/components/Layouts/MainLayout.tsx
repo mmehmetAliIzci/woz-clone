@@ -1,7 +1,7 @@
-import {ReactNode} from "react";
-import Head from "next/head";
+import { ReactNode } from 'react';
+import Head from 'next/head';
 
-export default function MainLayout({ children }: {children: ReactNode}) {
+export default function MainLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Head>
@@ -11,5 +11,5 @@ export default function MainLayout({ children }: {children: ReactNode}) {
       </Head>
       <main>{children}</main>
     </>
-  )
+  );
 }
