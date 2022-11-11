@@ -12,7 +12,7 @@ export interface AddressOption {
 const defaultDisabledValue = {
   value: '',
   label: 'Something went wrong',
-  color: 'red',
+  color: '#EBECF0',
   isFixed: true,
   isDisabled: true
 };
