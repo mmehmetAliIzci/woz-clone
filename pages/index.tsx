@@ -1,4 +1,3 @@
-import styles from '../styles/Home.module.css'
 import {StyledH1} from "./components/shared/Typography/h1";
 import {StyledP} from "./components/shared/Typography/p";
 import {Box} from "./components/shared/Box/Box";
@@ -6,8 +5,8 @@ import {AddressSearch} from "./components/AddressSearch/AddressSearch";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
+    <div >
+      <main >
         <Box>
           <StyledH1>
             Welkom bij de WOZ Check 2022
