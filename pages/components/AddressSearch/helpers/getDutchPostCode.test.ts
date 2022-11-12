@@ -18,7 +18,7 @@ describe('getDutchPostCode', () => {
       input: '  3026gs  123AB',
       output: {
         postCode: '3026gs',
-        houseNumber: '123AB'
+        houseNumber: '123'
       }
     },
     {
