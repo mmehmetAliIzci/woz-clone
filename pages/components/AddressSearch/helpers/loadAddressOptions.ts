@@ -1,40 +1,37 @@
 import { getDutchPostCode } from './getDutchPostCode';
-import { AddressResponse } from '../../api/fetchAddress';
+import { fetchAddress } from '../../api/fetchAddress';
+import { mapDataToSearchValues } from './mapDataToSearchValues';
 
-export interface AddressOption {
-  readonly value: AddressResponse | string;
-  readonly label: string;
-  readonly color: string;
-  readonly isFixed?: boolean;
-  readonly isDisabled?: boolean;
-}
+export const DEFAULT_LABEL = '';
+export const TYPE_HOUSE_POSTCODE = 'Type your postcode and house number';
+export const TYPE_HOUSE = 'Type your house number too';
+export const SOMETHING_WRONG = 'Something went wrong';
 
-const defaultDisabledValue = {
+export const defaultDisabledValue = {
   value: '',
-  label: 'Something went wrong',
+  label: DEFAULT_LABEL,
   color: '#EBECF0',
   isFixed: true,
   isDisabled: true
 };
 
-export const loadAddressOptions = (
-  inputValue: string,
-  callback: (options: AddressOption[]) => void
-) => {
-  // Maybe cache the options loaded since we need to make a call
+export const loadAddressOptions = async (inputValue?: string, callback?: any) => {
   if (inputValue) {
     const postcode = getDutchPostCode(inputValue);
     if (postcode?.postCode) {
       if (postcode?.houseNumber) {
         try {
-          callback([{ value: '', label: 'HIIIIIITT', color: '' }]);
+          const data = await fetchAddress(postcode);
+          callback(mapDataToSearchValues(data));
         } catch (e) {
-          callback([{ ...defaultDisabledValue, label: 'Something went wrong' }]);
+          callback([{ ...defaultDisabledValue, label: SOMETHING_WRONG }]);
         }
       }
-      callback([{ ...defaultDisabledValue, label: 'Type your house number too' }]);
+      callback([{ ...defaultDisabledValue, label: TYPE_HOUSE }]);
+    } else {
+      callback([{ ...defaultDisabledValue, label: TYPE_HOUSE_POSTCODE }]);
     }
+  } else {
+    callback([{ ...defaultDisabledValue, label: TYPE_HOUSE_POSTCODE }]);
   }
-
-  callback([{ ...defaultDisabledValue, label: 'Type your postcode and house number' }]);
 };
