@@ -1,4 +1,4 @@
-import { PostCodeHouseNumber } from '../../components/AddressSearch/helpers/getDutchPostCode';
+import { PostCodeHouseNumber } from '../../molecules/AddressSearch/helpers/getDutchPostCode';
 
 export interface AddressResponse {
   readonly woonplaats?: string;

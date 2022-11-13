@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { Box } from '../core/Box/Box';
-import { StyledH1 } from '../core/Typography/h1';
-import { ToastBox } from '../core/ToastBox/ToastBox';
-import { StyledH2 } from '../core/Typography/h2';
-import { Button } from '../core/Button/Button';
-import { Flex } from '../core/Flex/Flex';
-import { StyledP } from '../core/Typography/p';
-import { HouseWozValueBox } from '../components/HouseWozValueBox/HouseWozValueBox';
+import { Box } from '../../core/components/Box/Box';
+import { StyledH1 } from '../../core/components/Typography/h1';
+import { ToastBox } from '../../core/components/ToastBox/ToastBox';
+import { StyledH2 } from '../../core/components/Typography/h2';
+import { Button } from '../../core/components/Button/Button';
+import { Flex } from '../../core/components/Flex/Flex';
+import { StyledP } from '../../core/components/Typography/p';
+import { HouseWozValueBox } from '../../molecules/HouseWozValueBox/HouseWozValueBox';
 import { useStateMachine } from 'little-state-machine';
 import { useRouter } from 'next/router';
-import { setStep } from '../stateMachine/setStep';
+import { setStep } from '../../stateManagers/setStep';
 
 export default function NoSavings() {
   const { state, actions } = useStateMachine({ setStep });

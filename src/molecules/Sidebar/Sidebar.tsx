@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useStateMachine } from 'little-state-machine';
-import { setWozValues } from '../../stateMachine/setWozValues';
+import { setWozValues } from '../../stateManagers/setWozValues';
 
 interface CircleProps {
   selected?: boolean;
@@ -20,10 +20,10 @@ const Circle = styled.div<CircleProps>`
     props.selected
       ? props.theme.colors.primary
       : props.visited
-      ? 'rgb(80, 95, 121)'
+      ? props.theme.colors.primary
       : 'rgb(40, 41, 54)'};
   background: ${(props) =>
-    props.selected ? 'transparent' : props.visited ? 'rgb(40, 41, 54)' : 'transparent'};
+    props.selected ? 'transparent' : props.visited ? props.theme.colors.primary : 'transparent'};
 `;
 
 const StyledAside = styled.aside`

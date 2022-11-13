@@ -1,29 +1,28 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { jsx } from '@emotion/react';
-import { Box } from '../core/Box/Box';
-import { StyledH1 } from '../core/Typography/h1';
-import { StyledP } from '../core/Typography/p';
-import { StyledH2 } from '../core/Typography/h2';
+import { Box } from '../../core/components/Box/Box';
+import { StyledH1 } from '../../core/components/Typography/h1';
+import { StyledP } from '../../core/components/Typography/p';
+import { StyledH2 } from '../../core/components/Typography/h2';
 import styled from '@emotion/styled';
-import { BoxWithGrayBg } from '../core/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../core/Button/Button';
-import { GreenTick } from '../core/Icons/GreenTick';
+import { BoxWithGrayBg } from '../../core/components/BoxWithGrayBg/BoxWithGrayBg';
+import { Button } from '../../core/components/Button/Button';
+import { GreenTick } from '../../core/components/Icons/GreenTick';
 import { useStateMachine } from 'little-state-machine';
 import { useRouter } from 'next/router';
-import { HouseAddressBox } from '../components/HouseAddressBox/HouseAddressBox';
-import { fetchWOZvalue } from '../core/api/fetchWOZvalue';
-import { setWozValues } from '../stateMachine/setWozValues';
-import { Modal } from '../core/Modal/Modal';
-import useModal from '../core/Modal/useModal';
-import { isResidentialAddress } from '../helpers/isResidentialAddress';
-import { Flex } from '../core/Flex/Flex';
+import { HouseAddressBox } from '../../molecules/HouseAddressBox/HouseAddressBox';
+import { fetchWOZvalue } from '../../core/api/fetchWOZvalue';
+import { setWozValues } from '../../stateManagers/setWozValues';
+import { Modal } from '../../core/components/Modal/Modal';
+import useModal from '../../core/components/Modal/useModal';
+import { isResidentialAddress } from '../../helpers/isResidentialAddress';
+import { Flex } from '../../core/components/Flex/Flex';
 import {
   InfoCardContainer,
   InfoCardNumber,
   InfoCardWrapper
-} from '../components/InfoCard/InfoCard';
-import { resetAddress } from '../stateMachine/resetAddres';
+} from '../../molecules/InfoCard/InfoCard';
+import { resetAddress } from '../../stateManagers/resetAddres';
 
 const FooterButtonWrapper = styled.div`
   display: flex;
@@ -48,7 +47,7 @@ export default function Confirmation() {
 
   const handleNextButton = async () => {
     if (selectedAddress) {
-      if (!isResidentialAddress(selectedAddress)) {
+      if (isResidentialAddress(selectedAddress)) {
         const wozValues = await fetchWOZvalue();
         actions.setWozValues({ wozValues });
 

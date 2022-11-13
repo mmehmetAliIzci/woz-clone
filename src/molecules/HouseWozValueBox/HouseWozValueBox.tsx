@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { BoxWithGrayBg } from '../../core/BoxWithGrayBg/BoxWithGrayBg';
+import { BoxWithGrayBg } from '../../core/components/BoxWithGrayBg/BoxWithGrayBg';
 import { WozValueResponse } from '../../core/api/fetchWOZvalue';
-import { flexColumn } from '../../core/styles';
 import { HouseInformationRow, HouseInformationText } from '../HouseInformation/HouseInformation';
 import { numberWithDotSeperator } from '../../helpers/numberWithDotSeperator';
+import { flexColumn } from '../../core/components/utilityStyles';
 
 export const HouseWozValueBox = ({ wozValues }: { wozValues?: WozValueResponse }) => (
   <BoxWithGrayBg css={flexColumn}>

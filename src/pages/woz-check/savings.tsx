@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import { Box } from '../core/Box/Box';
-import { StyledH1 } from '../core/Typography/h1';
-import { ToastBox } from '../core/ToastBox/ToastBox';
-import { StyledH2 } from '../core/Typography/h2';
-import { BoxWithGrayBg } from '../core/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../core/Button/Button';
-import { Flex } from '../core/Flex/Flex';
+import { Box } from '../../core/components/Box/Box';
+import { StyledH1 } from '../../core/components/Typography/h1';
+import { ToastBox } from '../../core/components/ToastBox/ToastBox';
+import { StyledH2 } from '../../core/components/Typography/h2';
+import { BoxWithGrayBg } from '../../core/components/BoxWithGrayBg/BoxWithGrayBg';
+import { Button } from '../../core/components/Button/Button';
+import { Flex } from '../../core/components/Flex/Flex';
 import {
   HouseInformationRow,
   HouseInformationText
-} from '../components/HouseInformation/HouseInformation';
-import { flexColumn } from '../core/styles';
+} from '../../molecules/HouseInformation/HouseInformation';
 import { useStateMachine } from 'little-state-machine';
-import { HouseWozValueBox } from '../components/HouseWozValueBox/HouseWozValueBox';
+import { HouseWozValueBox } from '../../molecules/HouseWozValueBox/HouseWozValueBox';
+import { flexColumn } from '../../core/components/utilityStyles';
 
 export default function Savings() {
   const { state } = useStateMachine();

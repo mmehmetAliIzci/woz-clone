@@ -1,11 +1,11 @@
-import { StyledH2 } from '../../core/Typography/h2';
 import styled from '@emotion/styled';
 import { loadAddressOptions } from './helpers/loadAddressOptions';
 import { useDebounce } from '../../helpers/debounce';
 import AsyncSelect from 'react-select/async';
 import { AddressResponse } from '../../core/api/fetchAddress';
 import { SingleValue } from 'react-select';
-import { Button } from '../../core/Button/Button';
+import { Button } from '../../core/components/Button/Button';
+import { lightTheme } from '../../pages/_app';
 
 const AddressSearchWrapper = styled.div`
   border-radius: 8px;
@@ -18,14 +18,15 @@ const AddressSearchWrapper = styled.div`
 `;
 
 const customStyles = {
-  option: (provided: any, state: { isSelected: any }) => ({
+  option: (provided: any, state: { isSelected: any; isDisabled: any }) => ({
     ...provided,
-    borderBottom: '1px dotted pink',
-    color: state.isSelected ? 'red' : 'blue',
-    padding: 20
+    opacity: 1,
+    padding: '10px 20px',
+    color: lightTheme.colors.primaryText
   }),
   control: (provided: any) => ({
-    ...provided
+    ...provided,
+    padding: 10
   }),
   singleValue: (provided: any, state: { isDisabled: any }) => {
     const opacity = state.isDisabled ? 0.5 : 1;
@@ -38,7 +39,11 @@ const customStyles = {
   }),
   container: (provided: any) => ({
     ...provided,
-    width: 400
+    width: '100%'
+  }),
+  menuList: (provided: any) => ({
+    ...provided,
+    padding: 0
   })
 };
 
@@ -59,7 +64,6 @@ export const AddressSearch = ({
 
   return (
     <>
-      <StyledH2>Woonadres</StyledH2>
       <AddressSearchWrapper>
         <AsyncSelect
           cacheOptions

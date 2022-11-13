@@ -1,10 +1,9 @@
-import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { ThemeProvider } from '@emotion/react';
-import MainLayout from './components/Layouts/MainLayout';
+import { css, ThemeProvider, Global } from '@emotion/react';
+import MainLayout from '../molecules/Layouts/MainLayout';
 import { createStore, StateMachineProvider } from 'little-state-machine';
 
-const lightTheme = {
+export const lightTheme = {
   colors: {
     primary: '#297AFF',
     secondary: '#FFFFFF',
@@ -27,6 +26,22 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StateMachineProvider>
       <ThemeProvider theme={lightTheme}>
+        <Global
+          styles={css`
+            html,
+            body {
+              padding: 0;
+              margin: 0;
+              font-family: sans-serif;
+              background-color: rgb(236, 240, 249);
+              color: rgb(52, 69, 99);
+            }
+
+            * {
+              box-sizing: border-box;
+            }
+          `}
+        />
         <MainLayout>
           <Component {...pageProps} />
         </MainLayout>
