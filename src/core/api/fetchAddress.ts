@@ -1,15 +1,5 @@
-import { PostCodeHouseNumber } from '../../molecules/AddressSearch/helpers/getDutchPostCode';
-
-export interface AddressResponse {
-  readonly woonplaats?: string;
-  readonly postcode?: string;
-  readonly huisnummer?: string;
-  readonly huisletter?: string;
-  readonly huisnummertoevoeging?: string | null;
-  readonly openbareruimte?: string;
-  readonly gebruiksdoelen: string[];
-  readonly object_id: string;
-}
+import { AddressResponse } from './types';
+import { PostCodeHouseNumber } from '../../molecules/AddressSearch/helpers/types';
 
 const BASE_API_URL = 'https://api.bestaatditadres.nl/lookup.json';
 

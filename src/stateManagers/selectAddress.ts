@@ -1,6 +1,7 @@
 import { GlobalState } from 'little-state-machine';
-import { AddressResponse } from '../core/api/fetchAddress';
+
 import { Steps } from '../../global';
+import { AddressResponse } from '../core/api/types';
 
 export function selectAddress(
   state: GlobalState,

@@ -15,11 +15,16 @@ export const lightTheme = {
   }
 };
 
-createStore({
-  selectedAddress: undefined,
-  wozValues: undefined,
-  step: 'SelectAddress'
-});
+createStore(
+  {
+    selectedAddress: undefined,
+    wozValues: undefined,
+    step: 'SelectAddress'
+  },
+  {
+    persist: 'none'
+  }
+);
 
 // TODO: make body styleable with color and background color depending on theme
 export default function App({ Component, pageProps }: AppProps) {

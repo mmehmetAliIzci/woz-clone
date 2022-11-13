@@ -1,6 +1,6 @@
-import { getDutchPostCode } from './getDutchPostCode';
 import { fetchAddress } from '../../../core/api/fetchAddress';
 import { mapDataToSearchValues } from './mapDataToSearchValues';
+import { getDutchPostCode } from './getDutchPostCode';
 
 export const DEFAULT_LABEL = '';
 export const TYPE_HOUSE_POSTCODE = 'Type your postcode and house number';
