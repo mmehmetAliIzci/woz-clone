@@ -57,6 +57,7 @@ export const AddressSearch = () => {
           // However this is not necessary
           /*// @ts-ignore */
           loadOptions={debouncedLoadOptions}
+          // TODO: handle on change moving pages
           onChange={(newValue: unknown) => {
             console.warn(newValue);
           }}
