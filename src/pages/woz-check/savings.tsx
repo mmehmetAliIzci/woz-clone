@@ -13,9 +13,16 @@ import {
 import { useStateMachine } from 'little-state-machine';
 import { HouseWozValueBox } from '../../molecules/HouseWozValueBox/HouseWozValueBox';
 import { flexColumn } from '../../core/components/utilityStyles';
+import { router } from 'next/client';
+import { setStep } from '../../stateManagers/setStep';
 
 export default function Savings() {
-  const { state } = useStateMachine();
+  const { state, actions } = useStateMachine({ setStep });
+
+  const handleBackButton = () => {
+    actions.setStep({ step: 'ConfirmAddress' });
+    router.back();
+  };
 
   return (
     <Box>
@@ -53,7 +60,9 @@ export default function Savings() {
       </ToastBox>
 
       <Flex css={{ gap: 16 }}>
-        <Button secondary>Vorige</Button>
+        <Button secondary onClick={handleBackButton}>
+          Vorige
+        </Button>
         <Button primary css={{ flexGrow: 100 }}>
           Maak gratis beswaar
         </Button>
