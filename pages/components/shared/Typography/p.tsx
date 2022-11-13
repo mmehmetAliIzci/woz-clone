@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const StyledP = styled.p`
-  color: ${props => props.theme.colors.primaryText};
-`
+  // TODO: do coloring via body
+  color: ${(props) => props.theme.colors.primaryText};
+`;

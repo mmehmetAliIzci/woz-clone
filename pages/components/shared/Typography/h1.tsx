@@ -1,5 +1,10 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const StyledH1 = styled.h1`
-  color: ${props => props.theme.colors.primaryText};
-`
+  // TODO: do coloring via body
+  color: ${(props) => props.theme.colors.primaryText};
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0px;
+  line-height: 1.25;
+`;
