@@ -1,21 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
-import { Box } from '../components/shared/Box/Box';
-import { StyledH1 } from '../components/shared/Typography/h1';
-import { ToastBox } from '../components/shared/ToastBox/ToastBox';
-import { StyledH2 } from '../components/shared/Typography/h2';
-import styled from '@emotion/styled';
-import { BoxWithGrayBg } from '../components/shared/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../components/shared/Button/Button';
-import { Flex } from '../components/shared/Flex/Flex';
+import { Box } from '../core/Box/Box';
+import { StyledH1 } from '../core/Typography/h1';
+import { ToastBox } from '../core/ToastBox/ToastBox';
+import { StyledH2 } from '../core/Typography/h2';
+import { BoxWithGrayBg } from '../core/BoxWithGrayBg/BoxWithGrayBg';
+import { Button } from '../core/Button/Button';
+import { Flex } from '../core/Flex/Flex';
 import {
   HouseInformationRow,
   HouseInformationText
-} from '../components/shared/HouseInformation/HouseInformation';
-import { flexColumn } from '../components/shared/styles';
+} from '../components/HouseInformation/HouseInformation';
+import { flexColumn } from '../core/styles';
+import { useStateMachine } from 'little-state-machine';
+import { HouseWozValueBox } from '../components/HouseWozValueBox/HouseWozValueBox';
 
-// TODO: read from global state to show savings or no savings
 export default function Savings() {
+  const { state } = useStateMachine();
+
   return (
     <Box>
       <StyledH1>U betaalt te veel belasting door een te hoge WOZ-waarde</StyledH1>
@@ -25,16 +26,7 @@ export default function Savings() {
       </ToastBox>
 
       <StyledH2>WOZ-waarde</StyledH2>
-      <BoxWithGrayBg css={flexColumn}>
-        <HouseInformationRow>
-          <HouseInformationText>Huidige WOZ-waarde</HouseInformationText>
-          <HouseInformationText>€ 280.000</HouseInformationText>
-        </HouseInformationRow>
-        <HouseInformationRow>
-          <HouseInformationText>Eerlijke WOZ-waarde</HouseInformationText>
-          <HouseInformationText>€ 243.000</HouseInformationText>
-        </HouseInformationRow>
-      </BoxWithGrayBg>
+      <HouseWozValueBox wozValues={state.wozValues} />
 
       <StyledH2>Verwachte besparingen per jaar</StyledH2>
       <BoxWithGrayBg css={[flexColumn, { marginBottom: '0px' }]}>

@@ -1,4 +1,4 @@
-import { AddressResponse } from '../../api/fetchAddress';
+import { AddressResponse } from '../../../core/api/fetchAddress';
 
 export interface AddressOption {
   readonly value: AddressResponse | string;

@@ -1,22 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
-import { Box } from '../components/shared/Box/Box';
-import { StyledH1 } from '../components/shared/Typography/h1';
-import { ToastBox } from '../components/shared/ToastBox/ToastBox';
-import { StyledH2 } from '../components/shared/Typography/h2';
-import styled from '@emotion/styled';
-import { BoxWithGrayBg } from '../components/shared/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../components/shared/Button/Button';
-import { Flex } from '../components/shared/Flex/Flex';
-import { StyledP } from '../components/shared/Typography/p';
-import {
-  HouseInformationRow,
-  HouseInformationText
-} from '../components/shared/HouseInformation/HouseInformation';
-import { flexColumn } from '../components/shared/styles';
+import { Box } from '../core/Box/Box';
+import { StyledH1 } from '../core/Typography/h1';
+import { ToastBox } from '../core/ToastBox/ToastBox';
+import { StyledH2 } from '../core/Typography/h2';
+import { Button } from '../core/Button/Button';
+import { Flex } from '../core/Flex/Flex';
+import { StyledP } from '../core/Typography/p';
+import { HouseWozValueBox } from '../components/HouseWozValueBox/HouseWozValueBox';
+import { useStateMachine } from 'little-state-machine';
+import { useRouter } from 'next/router';
+import { setStep } from '../stateMachine/setStep';
 
-// TODO: read from global state to show savings or no savings
 export default function NoSavings() {
+  const { state, actions } = useStateMachine({ setStep });
+  const router = useRouter();
+
+  const handleBackButton = () => {
+    actions.setStep({ step: 'ConfirmAddress' });
+    router.back();
+  };
+
   return (
     <Box>
       <StyledH1>Uw WOZ-waarde is waarschijnlijk niet te hoog</StyledH1>
@@ -26,16 +29,7 @@ export default function NoSavings() {
       </ToastBox>
 
       <StyledH2>WOZ-waarde</StyledH2>
-      <BoxWithGrayBg css={flexColumn}>
-        <HouseInformationRow>
-          <HouseInformationText>Huidige WOZ-waarde</HouseInformationText>
-          <HouseInformationText>€ 280.000</HouseInformationText>
-        </HouseInformationRow>
-        <HouseInformationRow>
-          <HouseInformationText>Eerlijke WOZ-waarde</HouseInformationText>
-          <HouseInformationText>€ 243.000</HouseInformationText>
-        </HouseInformationRow>
-      </BoxWithGrayBg>
+      <HouseWozValueBox wozValues={state.wozValues} />
 
       <StyledP>
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -48,7 +42,9 @@ export default function NoSavings() {
       </StyledP>
 
       <Flex css={{ gap: 16 }}>
-        <Button secondary>Vorige</Button>
+        <Button secondary onClick={handleBackButton}>
+          Vorige
+        </Button>
         <Button primary css={{ flexGrow: 100 }}>
           Aanmelden voor WOZ Notificatie
         </Button>

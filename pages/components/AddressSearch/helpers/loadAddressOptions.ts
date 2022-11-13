@@ -1,11 +1,10 @@
 import { getDutchPostCode } from './getDutchPostCode';
-import { fetchAddress } from '../../api/fetchAddress';
+import { fetchAddress } from '../../../core/api/fetchAddress';
 import { mapDataToSearchValues } from './mapDataToSearchValues';
 
 export const DEFAULT_LABEL = '';
-// TODO: be more helpful guiding users what to put
-export const TYPE_HOUSE_POSTCODE = 'Type your postcode and house number';
-export const TYPE_HOUSE = 'Type your house number too';
+export const TYPE_HOUSE_POSTCODE = 'Type your postcode and house number Ex: 1234ab 223';
+export const TYPE_HOUSE = 'Type your house number Ex: 123';
 export const SOMETHING_WRONG = 'Something went wrong';
 
 export const defaultDisabledValue = {

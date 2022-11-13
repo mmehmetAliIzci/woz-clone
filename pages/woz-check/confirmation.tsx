@@ -1,42 +1,29 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Box } from '../components/shared/Box/Box';
-import { StyledH1 } from '../components/shared/Typography/h1';
-import { StyledP } from '../components/shared/Typography/p';
-import { StyledH2 } from '../components/shared/Typography/h2';
+import { Box } from '../core/Box/Box';
+import { StyledH1 } from '../core/Typography/h1';
+import { StyledP } from '../core/Typography/p';
+import { StyledH2 } from '../core/Typography/h2';
 import styled from '@emotion/styled';
-import { BoxWithGrayBg } from '../components/shared/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../components/shared/Button/Button';
-import { GreenTick } from '../components/shared/icons/GreenTick';
-
-const InfoCardWrapper = styled.div`
-  margin-top: 24px;
-  & div:not(:first-child) {
-    margin-top: 16px;
-  }
-`;
-const InfoCardContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  min-height: 20px;
-  line-height: 1.2;
-`;
-const InfoCardNumber = styled.div`
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.light};
-  background-color: ${(props) => props.theme.colors.primary};
-  border-radius: 100%;
-  width: 24px;
-  height: 24px;
-  margin-right: 16px;
-`;
+import { BoxWithGrayBg } from '../core/BoxWithGrayBg/BoxWithGrayBg';
+import { Button } from '../core/Button/Button';
+import { GreenTick } from '../core/Icons/GreenTick';
+import { useStateMachine } from 'little-state-machine';
+import { useRouter } from 'next/router';
+import { HouseAddressBox } from '../components/HouseAddressBox/HouseAddressBox';
+import { fetchWOZvalue } from '../core/api/fetchWOZvalue';
+import { setWozValues } from '../stateMachine/setWozValues';
+import { Modal } from '../core/Modal/Modal';
+import useModal from '../core/Modal/useModal';
+import { isResidentialAddress } from '../helpers/isResidentialAddress';
+import { Flex } from '../core/Flex/Flex';
+import {
+  InfoCardContainer,
+  InfoCardNumber,
+  InfoCardWrapper
+} from '../components/InfoCard/InfoCard';
+import { resetAddress } from '../stateMachine/resetAddres';
 
 const FooterButtonWrapper = styled.div`
   display: flex;
@@ -46,6 +33,36 @@ const FooterButtonWrapper = styled.div`
 `;
 
 export default function Confirmation() {
+  const {
+    state: { selectedAddress },
+    actions
+  } = useStateMachine({ setWozValues, resetAddress });
+  const { isOpen, toggleModal } = useModal();
+
+  const router = useRouter();
+
+  const handleBackButton = () => {
+    actions.resetAddress();
+    router.back();
+  };
+
+  const handleNextButton = async () => {
+    if (selectedAddress) {
+      if (!isResidentialAddress(selectedAddress)) {
+        const wozValues = await fetchWOZvalue();
+        actions.setWozValues({ wozValues });
+
+        if (wozValues.wozValue > wozValues.eWozValue) {
+          router.push('/woz-check/savings');
+        } else {
+          router.push('/woz-check/no-savings');
+        }
+      } else {
+        toggleModal();
+      }
+    }
+  };
+
   return (
     <Box>
       <StyledH1>Welkom bij de WOZ Check 2022!</StyledH1>
@@ -68,12 +85,36 @@ export default function Confirmation() {
       </BoxWithGrayBg>
 
       <StyledH2>Uw adres</StyledH2>
-      <BoxWithGrayBg>
-        <span>Mathenesserdijk, 328-A 3026GS, Rotterdam</span>
-      </BoxWithGrayBg>
+      <HouseAddressBox address={selectedAddress} />
+
+      <Modal
+        isOpen={isOpen}
+        toggle={toggleModal}
+        header={<StyledH2>Adres heeft een zakelijke of gemengde bestemming</StyledH2>}
+      >
+        <StyledP>
+          Volgens onze gegevens heeft dit adres een zakelijke bestemming, helaas controleert
+          Eerlijke WOZ op dit moment alleen de WOZ-waarde van woningen.
+        </StyledP>
+        <StyledP>
+          We zullen in de toekomst wel de WOZ-waarde van zakelijk vastgoed controleren. Indien u
+          wenst dat EErlijke WOZ contact met u opneemt zodra de WOZ Check ook beschikbaar is voor
+          zakelijk vastgoed, ga dan verder met inschrijven.
+        </StyledP>
+        <HouseAddressBox address={selectedAddress} />
+        <Flex css={{ gap: 16 }}>
+          <Button primary>Aanmelden voor Eerlijke WOZ zakelijk</Button>
+          <Button secondary>Deze woning wordt niet zakelijk gebruikt</Button>
+        </Flex>
+      </Modal>
+
       <FooterButtonWrapper>
-        <Button secondary>Vorige</Button>
-        <Button primary>Volgende</Button>
+        <Button secondary onClick={handleBackButton}>
+          Vorige
+        </Button>
+        <Button primary onClick={handleNextButton}>
+          Volgende
+        </Button>
       </FooterButtonWrapper>
     </Box>
   );
