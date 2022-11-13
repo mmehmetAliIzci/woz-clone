@@ -8,12 +8,16 @@ import { StyledH2 } from '../core/Typography/h2';
 import styled from '@emotion/styled';
 import { BoxWithGrayBg } from '../core/BoxWithGrayBg/BoxWithGrayBg';
 import { Button } from '../core/Button/Button';
-import { GreenTick } from '../core/icons/GreenTick';
+import { GreenTick } from '../core/Icons/GreenTick';
 import { useStateMachine } from 'little-state-machine';
 import { useRouter } from 'next/router';
 import { HouseAddressBox } from '../components/HouseAddressBox/HouseAddressBox';
 import { fetchWOZvalue } from '../core/api/fetchWOZvalue';
 import { setWozValues } from '../stateMachine/setWozValues';
+import { Modal } from '../core/Modal/Modal';
+import useModal from '../core/Modal/useModal';
+import { isResidentialAddress } from '../helpers/isResidentialAddress';
+import { Flex } from '../core/Flex/Flex';
 
 const InfoCardWrapper = styled.div`
   margin-top: 24px;
@@ -50,7 +54,11 @@ const FooterButtonWrapper = styled.div`
 `;
 
 export default function Confirmation() {
-  const { state, actions } = useStateMachine({ setWozValues });
+  const {
+    state: { selectedAddress },
+    actions
+  } = useStateMachine({ setWozValues });
+  const { isOpen, toggleModal } = useModal();
 
   const router = useRouter();
 
@@ -59,14 +67,18 @@ export default function Confirmation() {
   };
 
   const handleNextButton = async () => {
-    if (state.selectedAddress) {
-      const wozValues = await fetchWOZvalue();
-      actions.setWozValues({ wozValues });
+    if (selectedAddress) {
+      if (!isResidentialAddress(selectedAddress)) {
+        const wozValues = await fetchWOZvalue();
+        actions.setWozValues({ wozValues });
 
-      if (wozValues.wozValue > wozValues.eWozValue) {
-        router.push('/woz-check/savings');
+        if (wozValues.wozValue > wozValues.eWozValue) {
+          router.push('/woz-check/savings');
+        } else {
+          router.push('/woz-check/no-savings');
+        }
       } else {
-        router.push('/woz-check/no-savings');
+        toggleModal();
       }
     }
   };
@@ -93,7 +105,28 @@ export default function Confirmation() {
       </BoxWithGrayBg>
 
       <StyledH2>Uw adres</StyledH2>
-      <HouseAddressBox address={state.selectedAddress} />
+      <HouseAddressBox address={selectedAddress} />
+
+      <Modal
+        isOpen={isOpen}
+        toggle={toggleModal}
+        header={<StyledH2>Adres heeft een zakelijke of gemengde bestemming</StyledH2>}
+      >
+        <StyledP>
+          Volgens onze gegevens heeft dit adres een zakelijke bestemming, helaas controleert
+          Eerlijke WOZ op dit moment alleen de WOZ-waarde van woningen.
+        </StyledP>
+        <StyledP>
+          We zullen in de toekomst wel de WOZ-waarde van zakelijk vastgoed controleren. Indien u
+          wenst dat EErlijke WOZ contact met u opneemt zodra de WOZ Check ook beschikbaar is voor
+          zakelijk vastgoed, ga dan verder met inschrijven.
+        </StyledP>
+        <HouseAddressBox address={selectedAddress} />
+        <Flex css={{ gap: 16 }}>
+          <Button primary>Aanmelden voor Eerlijke WOZ zakelijk</Button>
+          <Button secondary>Deze woning wordt niet zakelijk gebruikt</Button>
+        </Flex>
+      </Modal>
 
       <FooterButtonWrapper>
         <Button secondary onClick={handleBackButton}>
