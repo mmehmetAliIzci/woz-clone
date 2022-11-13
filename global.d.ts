@@ -1,6 +1,6 @@
 import 'little-state-machine';
-import { AddressResponse } from './pages/core/api/fetchAddress';
-import { WozValueResponse } from './pages/core/api/fetchWOZvalue';
+import { AddressResponse } from './src/core/api/fetchAddress';
+import { WozValueResponse } from './src/core/api/fetchWOZvalue';
 
 export type Steps = 'SelectAddress' | 'ConfirmAddress' | 'Result';
 
