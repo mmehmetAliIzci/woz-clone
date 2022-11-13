@@ -9,12 +9,14 @@ import { StyledP } from '../core/Typography/p';
 import { HouseWozValueBox } from '../components/HouseWozValueBox/HouseWozValueBox';
 import { useStateMachine } from 'little-state-machine';
 import { useRouter } from 'next/router';
+import { setStep } from '../stateMachine/setStep';
 
 export default function NoSavings() {
-  const { state } = useStateMachine();
+  const { state, actions } = useStateMachine({ setStep });
   const router = useRouter();
 
   const handleBackButton = () => {
+    actions.setStep({ step: 'ConfirmAddress' });
     router.back();
   };
 

@@ -5,6 +5,7 @@ import { useDebounce } from '../../helpers/debounce';
 import AsyncSelect from 'react-select/async';
 import { AddressResponse } from '../../core/api/fetchAddress';
 import { SingleValue } from 'react-select';
+import { Button } from '../../core/Button/Button';
 
 const AddressSearchWrapper = styled.div`
   border-radius: 8px;
@@ -12,6 +13,8 @@ const AddressSearchWrapper = styled.div`
   padding: 16px;
   min-height: 88px;
   display: flex;
+  align-items: center;
+  gap: 15px;
 `;
 
 const customStyles = {
@@ -71,7 +74,9 @@ export const AddressSearch = ({
           onChange={onChange}
           placeholder="Type uw postcode en huisnummer"
         />
-        <button onClick={onButtonClick}>Volgende</button>
+        <Button primary onClick={onButtonClick}>
+          Volgende
+        </Button>
       </AddressSearchWrapper>
     </>
   );

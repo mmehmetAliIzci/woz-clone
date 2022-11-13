@@ -17,7 +17,9 @@ const lightTheme = {
 };
 
 createStore({
-  selectedAddress: undefined
+  selectedAddress: undefined,
+  wozValues: undefined,
+  step: 'SelectAddress'
 });
 
 // TODO: make body styleable with color and background color depending on theme

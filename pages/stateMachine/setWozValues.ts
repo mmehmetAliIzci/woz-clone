@@ -1,5 +1,6 @@
 import { GlobalState } from 'little-state-machine';
 import { WozValueResponse } from '../core/api/fetchWOZvalue';
+import { Steps } from '../../global';
 
 export function setWozValues(
   state: GlobalState,
@@ -9,6 +10,7 @@ export function setWozValues(
 ) {
   return {
     ...state,
-    ...payload
+    ...payload,
+    step: 'Result' as Steps
   };
 }

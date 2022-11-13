@@ -18,34 +18,13 @@ import { Modal } from '../core/Modal/Modal';
 import useModal from '../core/Modal/useModal';
 import { isResidentialAddress } from '../helpers/isResidentialAddress';
 import { Flex } from '../core/Flex/Flex';
+import {
+  InfoCardContainer,
+  InfoCardNumber,
+  InfoCardWrapper
+} from '../components/InfoCard/InfoCard';
+import { resetAddress } from '../stateMachine/resetAddres';
 
-const InfoCardWrapper = styled.div`
-  margin-top: 24px;
-  & div:not(:first-child) {
-    margin-top: 16px;
-  }
-`;
-const InfoCardContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  min-height: 20px;
-  line-height: 1.2;
-`;
-const InfoCardNumber = styled.div`
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.light};
-  background-color: ${(props) => props.theme.colors.primary};
-  border-radius: 100%;
-  width: 24px;
-  height: 24px;
-  margin-right: 16px;
-`;
 const FooterButtonWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -57,12 +36,13 @@ export default function Confirmation() {
   const {
     state: { selectedAddress },
     actions
-  } = useStateMachine({ setWozValues });
+  } = useStateMachine({ setWozValues, resetAddress });
   const { isOpen, toggleModal } = useModal();
 
   const router = useRouter();
 
   const handleBackButton = () => {
+    actions.resetAddress();
     router.back();
   };
 

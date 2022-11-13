@@ -2,15 +2,14 @@ import { GlobalState } from 'little-state-machine';
 import { AddressResponse } from '../core/api/fetchAddress';
 import { Steps } from '../../global';
 
-export function selectAddress(
+export function setStep(
   state: GlobalState,
   payload: {
-    selectedAddress: AddressResponse;
+    step: Steps;
   }
 ) {
   return {
     ...state,
-    ...payload,
-    step: 'ConfirmAddress' as Steps
+    ...payload
   };
 }
