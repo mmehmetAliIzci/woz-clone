@@ -14,6 +14,7 @@
     "@emotion/react": "11.1.1",
     "@emotion/styled": "11.0.0",
     "jest-fetch-mock": "^3.0.3",
+    "little-state-machine": "^4.8.0",
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

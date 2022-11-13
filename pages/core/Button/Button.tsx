@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonStyleProps {
   primary?: boolean;

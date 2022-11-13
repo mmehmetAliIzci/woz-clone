@@ -1,14 +1,19 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Box } from '../components/shared/Box/Box';
-import { StyledH1 } from '../components/shared/Typography/h1';
-import { StyledP } from '../components/shared/Typography/p';
-import { StyledH2 } from '../components/shared/Typography/h2';
+import { Box } from '../core/Box/Box';
+import { StyledH1 } from '../core/Typography/h1';
+import { StyledP } from '../core/Typography/p';
+import { StyledH2 } from '../core/Typography/h2';
 import styled from '@emotion/styled';
-import { BoxWithGrayBg } from '../components/shared/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../components/shared/Button/Button';
-import { GreenTick } from '../components/shared/icons/GreenTick';
+import { BoxWithGrayBg } from '../core/BoxWithGrayBg/BoxWithGrayBg';
+import { Button } from '../core/Button/Button';
+import { GreenTick } from '../core/icons/GreenTick';
+import { useStateMachine } from 'little-state-machine';
+import { useRouter } from 'next/router';
+import { HouseAddressBox } from '../components/HouseAddressBox/HouseAddressBox';
+import { fetchWOZvalue } from '../core/api/fetchWOZvalue';
+import { setWozValues } from '../stateMachine/setWozValues';
 
 const InfoCardWrapper = styled.div`
   margin-top: 24px;
@@ -37,7 +42,6 @@ const InfoCardNumber = styled.div`
   height: 24px;
   margin-right: 16px;
 `;
-
 const FooterButtonWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -46,6 +50,27 @@ const FooterButtonWrapper = styled.div`
 `;
 
 export default function Confirmation() {
+  const { state, actions } = useStateMachine({ setWozValues });
+
+  const router = useRouter();
+
+  const handleBackButton = () => {
+    router.back();
+  };
+
+  const handleNextButton = async () => {
+    if (state.selectedAddress) {
+      const wozValues = await fetchWOZvalue();
+      actions.setWozValues({ wozValues });
+
+      if (wozValues.wozValue > wozValues.eWozValue) {
+        router.push('/woz-check/savings');
+      } else {
+        router.push('/woz-check/no-savings');
+      }
+    }
+  };
+
   return (
     <Box>
       <StyledH1>Welkom bij de WOZ Check 2022!</StyledH1>
@@ -68,12 +93,15 @@ export default function Confirmation() {
       </BoxWithGrayBg>
 
       <StyledH2>Uw adres</StyledH2>
-      <BoxWithGrayBg>
-        <span>Mathenesserdijk, 328-A 3026GS, Rotterdam</span>
-      </BoxWithGrayBg>
+      <HouseAddressBox address={state.selectedAddress} />
+
       <FooterButtonWrapper>
-        <Button secondary>Vorige</Button>
-        <Button primary>Volgende</Button>
+        <Button secondary onClick={handleBackButton}>
+          Vorige
+        </Button>
+        <Button primary onClick={handleNextButton}>
+          Volgende
+        </Button>
       </FooterButtonWrapper>
     </Box>
   );

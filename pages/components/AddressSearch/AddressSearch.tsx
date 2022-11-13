@@ -1,9 +1,10 @@
-import { StyledH2 } from '../shared/Typography/h2';
+import { StyledH2 } from '../../core/Typography/h2';
 import styled from '@emotion/styled';
 import { loadAddressOptions } from './helpers/loadAddressOptions';
-import { useRouter } from 'next/router';
 import { useDebounce } from '../../helpers/debounce';
 import AsyncSelect from 'react-select/async';
+import { AddressResponse } from '../../core/api/fetchAddress';
+import { SingleValue } from 'react-select';
 
 const AddressSearchWrapper = styled.div`
   border-radius: 8px;
@@ -38,9 +39,19 @@ const customStyles = {
   })
 };
 
-export const AddressSearch = () => {
-  const router = useRouter();
+export interface SelectItem {
+  color: string;
+  label: string;
+  value: AddressResponse;
+}
 
+export const AddressSearch = ({
+  onChange,
+  onButtonClick
+}: {
+  onChange: (value: SingleValue<SelectItem>) => void;
+  onButtonClick: () => void;
+}) => {
   const debouncedLoadOptions = useDebounce(loadAddressOptions, 1000);
 
   return (
@@ -57,19 +68,10 @@ export const AddressSearch = () => {
           // However this is not necessary
           /*// @ts-ignore */
           loadOptions={debouncedLoadOptions}
-          // TODO: handle on change moving pages
-          onChange={(newValue: unknown) => {
-            console.warn(newValue);
-          }}
+          onChange={onChange}
           placeholder="Type uw postcode en huisnummer"
         />
-        <button
-          onClick={() => {
-            router.push('/woz-check/confirmation');
-          }}
-        >
-          Volgende
-        </button>
+        <button onClick={onButtonClick}>Volgende</button>
       </AddressSearchWrapper>
     </>
   );
