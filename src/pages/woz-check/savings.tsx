@@ -13,11 +13,12 @@ import {
 import { useStateMachine } from 'little-state-machine';
 import { HouseWozValueBox } from '../../molecules/HouseWozValueBox/HouseWozValueBox';
 import { flexColumn } from '../../core/components/utilityStyles';
-import { router } from 'next/client';
 import { setStep } from '../../stateManagers/setStep';
+import { useRouter } from 'next/router';
 
 export default function Savings() {
   const { state, actions } = useStateMachine({ setStep });
+  const router = useRouter();
 
   const handleBackButton = () => {
     actions.setStep({ step: 'ConfirmAddress' });

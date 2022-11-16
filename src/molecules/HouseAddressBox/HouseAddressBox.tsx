@@ -1,5 +1,5 @@
 import { BoxWithGrayBg } from '../../core/components/BoxWithGrayBg/BoxWithGrayBg';
-import { AddressResponse } from '../../core/api/fetchAddress';
+import { AddressResponse } from '../../core/api/types';
 
 export const HouseAddressBox = ({ address }: { address?: AddressResponse }) => (
   <BoxWithGrayBg>
