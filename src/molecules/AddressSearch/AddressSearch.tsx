@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { loadAddressOptions } from './helpers/loadAddressOptions';
 import { useDebounce } from '../../helpers/debounce';
 import AsyncSelect from 'react-select/async';
-import { AddressResponse } from '../../core/api/fetchAddress';
+import { AddressResponse } from '../../core/api/types';
 import { SingleValue } from 'react-select';
 import { Button } from '../../core/components/Button/Button';
 import { lightTheme } from '../../pages/_app';
