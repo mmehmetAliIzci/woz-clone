@@ -1,21 +1,21 @@
 {
   "name": "woz-clone",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "check-types": "tsc --noemit --project ./tsconfig.json"
   },
   "dependencies": {
     "@emotion/react": "11.1.1",
     "@emotion/styled": "11.0.0",
     "jest-fetch-mock": "^3.0.3",
     "little-state-machine": "^4.8.0",
-    "next": "13.0.2",
+    "next": "^14.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-select": "^5.6.0",
