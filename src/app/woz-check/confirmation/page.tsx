@@ -1,29 +1,29 @@
 'use client';
 /** @jsxImportSource @emotion/react */
 
-import { Box } from '../../../components/Atoms/Box/Box';
+import { Box } from '@components/Atoms/Box/Box';
 import styled from '@emotion/styled';
 import { useStateMachine } from 'little-state-machine';
 import { setWozValues } from '../../../stateManagers/setWozValues';
 import { resetAddress } from '../../../stateManagers/resetAddres';
-import useModal from '../../../components/Atoms/Modal/useModal';
+import useModal from '@components/Atoms/Modal/useModal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { isResidentialAddress } from './isResidentialAddress';
-import { StyledErrorP, StyledP } from '../../../components/Atoms/Typography/p';
-import { StyledH1 } from '../../../components/Atoms/Typography/h1';
+import { StyledErrorP, StyledP } from '@components/Atoms/Typography/p';
+import { StyledH1 } from '@components/Atoms/Typography/h1';
 import {
   InfoCardContainer,
   InfoCardNumber,
   InfoCardWrapper
-} from '../../../components/molecules/InfoCard/InfoCard';
-import { BoxWithGrayBg } from '../../../components/Atoms/BoxWithGrayBg/BoxWithGrayBg';
-import { GreenTick } from '../../../components/Atoms/Icons/GreenTick';
-import { StyledH2 } from '../../../components/Atoms/Typography/h2';
-import { HouseAddressBox } from '../../../components/molecules/HouseAddressBox/HouseAddressBox';
-import { Modal } from '../../../components/Atoms/Modal/Modal';
-import { Flex } from '../../../components/Atoms/Flex/Flex';
-import { Button } from '../../../components/Atoms/Button/Button';
+} from '@components/molecules/InfoCard/InfoCard';
+import { BoxWithGrayBg } from '@components/Atoms/BoxWithGrayBg/BoxWithGrayBg';
+import { GreenTick } from '@components/Atoms/Icons/GreenTick';
+import { StyledH2 } from '@components/Atoms/Typography/h2';
+import { HouseAddressBox } from '@components/molecules/HouseAddressBox/HouseAddressBox';
+import { Modal } from '@components/Atoms/Modal/Modal';
+import { Flex } from '@components/Atoms/Flex/Flex';
+import { Button } from '@components/Atoms/Button/Button';
 
 const FooterButtonWrapper = styled.div`
   display: flex;

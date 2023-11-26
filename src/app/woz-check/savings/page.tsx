@@ -1,19 +1,19 @@
 'use client';
 /** @jsxImportSource @emotion/react */
-import { Box } from '../../../components/Atoms/Box/Box';
-import { StyledH1 } from '../../../components/Atoms/Typography/h1';
-import { ToastBox } from '../../../components/Atoms/ToastBox/ToastBox';
-import { StyledH2 } from '../../../components/Atoms/Typography/h2';
-import { BoxWithGrayBg } from '../../../components/Atoms/BoxWithGrayBg/BoxWithGrayBg';
-import { Button } from '../../../components/Atoms/Button/Button';
-import { Flex } from '../../../components/Atoms/Flex/Flex';
+import { Box } from '@components/Atoms/Box/Box';
+import { StyledH1 } from '@components/Atoms/Typography/h1';
+import { ToastBox } from '@components/Atoms/ToastBox/ToastBox';
+import { StyledH2 } from '@components/Atoms/Typography/h2';
+import { BoxWithGrayBg } from '@components/Atoms/BoxWithGrayBg/BoxWithGrayBg';
+import { Button } from '@components/Atoms/Button/Button';
+import { Flex } from '@components/Atoms/Flex/Flex';
 import {
   HouseInformationRow,
   HouseInformationText
-} from '../../../components/molecules/HouseInformation/HouseInformation';
+} from '@components/molecules/HouseInformation/HouseInformation';
 import { useStateMachine } from 'little-state-machine';
-import { HouseWozValueBox } from '../../../components/molecules/HouseWozValueBox/HouseWozValueBox';
-import { flexColumn } from '../../../components/utilityStyles';
+import { HouseWozValueBox } from '@components/molecules/HouseWozValueBox/HouseWozValueBox';
+import { flexColumn } from '@components/utilityStyles';
 import { setStep } from '../../../stateManagers/setStep';
 import { useRouter } from 'next/router';
 
