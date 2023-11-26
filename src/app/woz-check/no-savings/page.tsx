@@ -42,11 +42,11 @@ export default function NoSavings() {
         consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
       </StyledP>
 
-      <Flex css={{ gap: 16 }}>
+      <Flex style={{ gap: 16 }}>
         <Button secondary onClick={handleBackButton}>
           Vorige
         </Button>
-        <Button primary css={{ flexGrow: 100 }}>
+        <Button primary style={{ flexGrow: 100 }}>
           Aanmelden voor WOZ Notificatie
         </Button>
       </Flex>

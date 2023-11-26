@@ -116,7 +116,7 @@ export default function Confirmation() {
           zakelijk vastgoed, ga dan verder met inschrijven.
         </StyledP>
         <HouseAddressBox address={selectedAddress} />
-        <Flex css={{ gap: 16 }}>
+        <Flex style={{ gap: 16 }}>
           <Button primary>Aanmelden voor Eerlijke WOZ zakelijk</Button>
           <Button secondary>Deze woning wordt niet zakelijk gebruikt</Button>
         </Flex>

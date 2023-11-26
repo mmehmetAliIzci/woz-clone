@@ -33,7 +33,7 @@ export default function Home() {
         <Box>
           <StyledH1>Welkom bij de WOZ Check 2022</StyledH1>
           <StyledP>Voer uw woonadres in om te beginnen.</StyledP>
-          <StyledH2 css={{ marginBottom: '8px' }}>Woonadres</StyledH2>
+          <StyledH2 style={{ marginBottom: '8px' }}>Woonadres</StyledH2>
           <AddressSearch onChange={handleOnChange} onButtonClick={handleButtonClick} />
         </Box>
       </main>

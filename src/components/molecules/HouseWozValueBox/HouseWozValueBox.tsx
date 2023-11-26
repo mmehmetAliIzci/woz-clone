@@ -6,7 +6,7 @@ import { numberWithDotSeperator } from './numberWithDotSeperator';
 import { flexColumn } from '../../utilityStyles';
 
 export const HouseWozValueBox = ({ wozValues }: { wozValues?: WozValueResponse }) => (
-  <BoxWithGrayBg css={flexColumn}>
+  <BoxWithGrayBg style={flexColumn}>
     <HouseInformationRow>
       <HouseInformationText>Huidige WOZ-waarde</HouseInformationText>
       <HouseInformationText>€ {numberWithDotSeperator(wozValues?.wozValue)}</HouseInformationText>

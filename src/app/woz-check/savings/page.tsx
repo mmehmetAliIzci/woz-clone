@@ -38,7 +38,7 @@ export default function Savings() {
       <HouseWozValueBox wozValues={state.wozValues} />
 
       <StyledH2>Verwachte besparingen per jaar</StyledH2>
-      <BoxWithGrayBg css={[flexColumn, { marginBottom: '0px' }]}>
+      <BoxWithGrayBg style={[flexColumn, { marginBottom: '0px' }]}>
         <HouseInformationRow>
           <HouseInformationText>Inkomstenbelasting</HouseInformationText>
           <HouseInformationText>€ 82</HouseInformationText>
@@ -61,11 +61,11 @@ export default function Savings() {
         </HouseInformationText>
       </ToastBox>
 
-      <Flex css={{ gap: 16 }}>
+      <Flex style={{ gap: 16 }}>
         <Button secondary onClick={handleBackButton}>
           Vorige
         </Button>
-        <Button primary css={{ flexGrow: 100 }}>
+        <Button primary style={{ flexGrow: 100 }}>
           Maak gratis beswaar
         </Button>
       </Flex>
