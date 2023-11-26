@@ -25,6 +25,6 @@
       "@api/*": ["./src/app/api/*"]
     }
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "./global.d.ts"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "@types/*.ts"],
   "exclude": ["node_modules"]
 }
