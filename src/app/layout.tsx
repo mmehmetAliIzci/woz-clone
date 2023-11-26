@@ -2,25 +2,15 @@
 import { css, Global, ThemeProvider } from '@emotion/react';
 import { createStore, StateMachineProvider } from 'little-state-machine';
 import React from 'react';
-import MainLayout from '../components/molecules/Layouts/MainLayout';
-
-export const lightTheme = {
-  colors: {
-    primary: '#297AFF',
-    secondary: '#FFFFFF',
-    primaryHover: '#0061FF',
-    backgroundColor: '#ECF0F9',
-    primaryText: '#344563',
-    light: '#FFFFFF',
-    gray: 'rgb(244, 245, 247)'
-  }
-};
+import MainLayout from '@components/molecules/Layouts/MainLayout';
+import { lightTheme } from '@components/utilityStyles';
+import { Steps } from '../stateManagers/types';
 
 createStore(
   {
     selectedAddress: undefined,
     wozValues: undefined,
-    step: 'SelectAddress'
+    step: Steps.SelectAddress
   },
   {
     persist: 'none'

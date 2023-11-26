@@ -1,5 +1,6 @@
 import { GlobalState } from 'little-state-machine';
-import { Steps } from '../../global';
+
+import { Steps } from './types';
 
 export function setStep(
   state: GlobalState,

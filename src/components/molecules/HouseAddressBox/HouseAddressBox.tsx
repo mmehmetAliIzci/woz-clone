@@ -1,6 +1,6 @@
 'use client';
 import { BoxWithGrayBg } from '../../Atoms/BoxWithGrayBg/BoxWithGrayBg';
-import { AddressResponse } from '../../core/api/types';
+import { AddressResponse } from '../../../app/api/address/route';
 
 export const HouseAddressBox = ({ address }: { address?: AddressResponse }) => (
   <BoxWithGrayBg>

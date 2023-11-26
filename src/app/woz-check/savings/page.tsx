@@ -13,16 +13,17 @@ import {
 } from '@components/molecules/HouseInformation/HouseInformation';
 import { useStateMachine } from 'little-state-machine';
 import { HouseWozValueBox } from '@components/molecules/HouseWozValueBox/HouseWozValueBox';
-import { flexColumn } from '@components/utilityStyles';
 import { setStep } from '../../../stateManagers/setStep';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+
+import { Steps } from '../../../stateManagers/types';
 
 export default function Savings() {
   const { state, actions } = useStateMachine({ setStep });
   const router = useRouter();
 
   const handleBackButton = () => {
-    actions.setStep({ step: 'ConfirmAddress' });
+    actions.setStep({ step: Steps.ConfirmAddress });
     router.back();
   };
 
@@ -38,18 +39,18 @@ export default function Savings() {
       <HouseWozValueBox wozValues={state.wozValues} />
 
       <StyledH2>Verwachte besparingen per jaar</StyledH2>
-      <BoxWithGrayBg style={[flexColumn, { marginBottom: '0px' }]}>
+      <BoxWithGrayBg style={{ marginBottom: '0px', gap: 12 }}>
         <HouseInformationRow>
           <HouseInformationText>Inkomstenbelasting</HouseInformationText>
-          <HouseInformationText>€ 82</HouseInformationText>
+          <HouseInformationText>€82</HouseInformationText>
         </HouseInformationRow>
         <HouseInformationRow>
           <HouseInformationText>Onroerende-zaakbelasting (OZB)</HouseInformationText>
-          <HouseInformationText>€ 26</HouseInformationText>
+          <HouseInformationText>€26</HouseInformationText>
         </HouseInformationRow>
         <HouseInformationRow>
           <HouseInformationText>Watersysteemheffing</HouseInformationText>
-          <HouseInformationText>€ 12</HouseInformationText>
+          <HouseInformationText>€12</HouseInformationText>
         </HouseInformationRow>
       </BoxWithGrayBg>
       <ToastBox success>

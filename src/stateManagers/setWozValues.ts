@@ -1,5 +1,7 @@
 import { GlobalState } from 'little-state-machine';
-import { Steps } from '../../global';
+import { WozValueResponse } from '../app/api/woz-value/route';
+
+import { Steps } from './types';
 
 export function setWozValues(
   state: GlobalState,
@@ -10,6 +12,6 @@ export function setWozValues(
   return {
     ...state,
     ...payload,
-    step: 'Result' as Steps
+    step: Steps.Result
   };
 }

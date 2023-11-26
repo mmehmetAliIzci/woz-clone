@@ -11,8 +11,8 @@ export interface AddressOption {
 export const mapDataToSearchValues = (addressResponses: AddressResponse[]): AddressOption[] =>
   addressResponses.map((value) => ({
     value,
-    label: `${value.openbareruimte || ''}, ${value.huisnummer || ''} ${
-      value.huisnummertoevoeging || ''
-    } ${value.postcode || ''} ${value.woonplaats || ''}`,
+    label: `${value.openbareruimte || ''}, ${value.huisnummer || ''} ${value.huisletter || ''} ${
+      value.postcode || ''
+    } ${value.woonplaats || ''}`,
     color: '#EBECF0'
   }));

@@ -1,7 +1,7 @@
 import { GlobalState } from 'little-state-machine';
 
-import { Steps } from '../../global';
-import { AddressResponse } from '../core/api/types';
+import { AddressResponse } from '../app/api/address/route';
+import { Steps } from './types';
 
 export function selectAddress(
   state: GlobalState,
@@ -12,6 +12,6 @@ export function selectAddress(
   return {
     ...state,
     ...payload,
-    step: 'ConfirmAddress' as Steps
+    step: Steps.ConfirmAddress
   };
 }

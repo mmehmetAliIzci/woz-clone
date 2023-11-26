@@ -9,15 +9,17 @@ import { Flex } from '@components/Atoms/Flex/Flex';
 import { StyledP } from '@components/Atoms/Typography/p';
 import { HouseWozValueBox } from '@components/molecules/HouseWozValueBox/HouseWozValueBox';
 import { useStateMachine } from 'little-state-machine';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { setStep } from '../../../stateManagers/setStep';
+
+import { Steps } from '../../../stateManagers/types';
 
 export default function NoSavings() {
   const { state, actions } = useStateMachine({ setStep });
   const router = useRouter();
 
   const handleBackButton = () => {
-    actions.setStep({ step: 'ConfirmAddress' });
+    actions.setStep({ step: Steps.ConfirmAddress });
     router.back();
   };
 

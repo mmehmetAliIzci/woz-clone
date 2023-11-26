@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { useStateMachine } from 'little-state-machine';
 import React from 'react';
 
+import { Steps } from '../../../stateManagers/types';
+
 interface CircleProps {
   selected?: boolean;
   visited?: boolean;
@@ -67,21 +69,24 @@ export default function Sidebar() {
     <StyledAside>
       <div>
         <SideBarItemContainer
-          selected={step === 'SelectAddress'}
-          visited={step === 'ConfirmAddress' || step === 'Result'}
+          selected={step === Steps.SelectAddress}
+          visited={step === Steps.ConfirmAddress || step === Steps.Result}
         >
           <Circle
-            selected={step === 'SelectAddress'}
-            visited={step === 'ConfirmAddress' || step === 'Result'}
+            selected={step === Steps.SelectAddress}
+            visited={step === Steps.ConfirmAddress || step === Steps.Result}
           />
           <span>Adresgegevens</span>
         </SideBarItemContainer>
-        <SideBarItemContainer selected={step === 'ConfirmAddress'} visited={step === 'Result'}>
-          <Circle selected={step === 'ConfirmAddress'} visited={step === 'Result'} />
+        <SideBarItemContainer
+          selected={step === Steps.ConfirmAddress}
+          visited={step === Steps.Result}
+        >
+          <Circle selected={step === Steps.ConfirmAddress} visited={step === Steps.Result} />
           <span>Uitslag WOZ check</span>
         </SideBarItemContainer>
-        <SideBarItemContainer selected={step === 'Result'}>
-          <Circle selected={step === 'Result'} />
+        <SideBarItemContainer selected={step === Steps.Result}>
+          <Circle selected={step === Steps.Result} />
           <span>Bezwaar maken</span>
         </SideBarItemContainer>
       </div>
