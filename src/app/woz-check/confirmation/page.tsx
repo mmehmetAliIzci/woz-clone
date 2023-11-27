@@ -117,8 +117,12 @@ export default function Confirmation() {
         </StyledP>
         <HouseAddressBox address={selectedAddress} />
         <Flex style={{ gap: 16 }}>
-          <Button primary>Aanmelden voor Eerlijke WOZ zakelijk</Button>
-          <Button secondary>Deze woning wordt niet zakelijk gebruikt</Button>
+          <Button primary onClick={handleNextButton}>
+            Aanmelden voor Eerlijke WOZ zakelijk
+          </Button>
+          <Button secondary onClick={toggleModal}>
+            Deze woning wordt niet zakelijk gebruikt
+          </Button>
         </Flex>
       </Modal>
 
