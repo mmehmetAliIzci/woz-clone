@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BASE_API_URL = 'https://api.bestaatditadres.nl/lookup.json';
-
 export interface AddressResponse {
   readonly woonplaats?: string;
   readonly postcode?: string;
@@ -22,7 +20,9 @@ export async function GET(
     const houseNumber = searchParams.get('houseNumber');
 
     const response = await fetch(
-      `${BASE_API_URL}?postcode=${postcode?.toUpperCase()}&huisnummer=${houseNumber}`
+      `${
+        process.env.ADDRESS_SERVICE_URL
+      }?postcode=${postcode?.toUpperCase()}&huisnummer=${houseNumber}`
     );
 
     if (!response.ok) {

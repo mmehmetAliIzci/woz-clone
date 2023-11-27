@@ -21,7 +21,7 @@ export const loadAddressOptions = async (inputValue?: string, callback?: any) =>
       if (address?.houseNumber) {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/address?postcode=${address.postCode}&houseNumber=${address.houseNumber}`
+            `/api/address?postcode=${address.postCode}&houseNumber=${address.houseNumber}`
           );
 
           if (!response.ok) {

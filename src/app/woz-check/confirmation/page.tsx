@@ -51,7 +51,7 @@ export default function Confirmation() {
     if (selectedAddress) {
       if (isResidentialAddress(selectedAddress)) {
         try {
-          const response = await fetch(`http://localhost:3000/api/woz-value`);
+          const response = await fetch(`/api/woz-value`);
 
           if (!response.ok) {
             throw new Error('Api response returned not ok');
