@@ -7,7 +7,7 @@ import { StyledH2 } from '@components/Atoms/Typography/h2';
 import { Button } from '@components/Atoms/Button/Button';
 import { Flex } from '@components/Atoms/Flex/Flex';
 import { StyledP } from '@components/Atoms/Typography/p';
-import { HouseWozValueBox } from '@components/molecules/HouseWozValueBox/HouseWozValueBox';
+import { HouseWozValueBox } from '@components/Molecules/HouseWozValueBox/HouseWozValueBox';
 import { useStateMachine } from 'little-state-machine';
 import { useRouter } from 'next/navigation';
 import { setStep } from '../../../stateManagers/setStep';
