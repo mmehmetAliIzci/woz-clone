@@ -3,7 +3,7 @@
 import { StyledH1 } from '@components/Atoms/Typography/h1';
 import { StyledP } from '@components/Atoms/Typography/p';
 import { Box } from '@components/Atoms/Box/Box';
-import { AddressSearch, SelectItem } from '@components/molecules/AddressSearch/AddressSearch';
+import { AddressSearch, SelectItem } from '@components/Molecules/AddressSearch/AddressSearch';
 import { SingleValue } from 'react-select';
 import { useStateMachine } from 'little-state-machine';
 import { selectAddress } from '../stateManagers/selectAddress';

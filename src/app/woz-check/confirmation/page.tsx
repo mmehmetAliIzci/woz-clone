@@ -16,11 +16,11 @@ import {
   InfoCardContainer,
   InfoCardNumber,
   InfoCardWrapper
-} from '@components/molecules/InfoCard/InfoCard';
+} from '@components/Molecules/InfoCard/InfoCard';
 import { BoxWithGrayBg } from '@components/Atoms/BoxWithGrayBg/BoxWithGrayBg';
 import { GreenTick } from '@components/Atoms/Icons/GreenTick';
 import { StyledH2 } from '@components/Atoms/Typography/h2';
-import { HouseAddressBox } from '@components/molecules/HouseAddressBox/HouseAddressBox';
+import { HouseAddressBox } from '@components/Molecules/HouseAddressBox/HouseAddressBox';
 import { Modal } from '@components/Atoms/Modal/Modal';
 import { Flex } from '@components/Atoms/Flex/Flex';
 import { Button } from '@components/Atoms/Button/Button';

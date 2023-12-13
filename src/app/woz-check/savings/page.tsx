@@ -10,9 +10,9 @@ import { Flex } from '@components/Atoms/Flex/Flex';
 import {
   HouseInformationRow,
   HouseInformationText
-} from '@components/molecules/HouseInformation/HouseInformation';
+} from '@components/Molecules/HouseInformation/HouseInformation';
 import { useStateMachine } from 'little-state-machine';
-import { HouseWozValueBox } from '@components/molecules/HouseWozValueBox/HouseWozValueBox';
+import { HouseWozValueBox } from '@components/Molecules/HouseWozValueBox/HouseWozValueBox';
 import { setStep } from '../../../stateManagers/setStep';
 import { useRouter } from 'next/navigation';
 

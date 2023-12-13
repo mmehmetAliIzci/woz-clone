@@ -2,7 +2,7 @@
 import { css, Global, ThemeProvider } from '@emotion/react';
 import { createStore, StateMachineProvider } from 'little-state-machine';
 import React from 'react';
-import MainLayout from '@components/molecules/Layouts/MainLayout';
+import MainLayout from '@components/Molecules/Layouts/MainLayout';
 import { lightTheme } from '@components/utilityStyles';
 import { Steps } from '../stateManagers/types';
 
