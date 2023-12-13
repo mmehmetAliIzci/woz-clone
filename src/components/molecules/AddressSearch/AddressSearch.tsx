@@ -77,7 +77,7 @@ export const AddressSearch = ({
           /*// @ts-ignore */
           loadOptions={debouncedLoadOptions}
           onChange={onChange}
-          placeholder="Type uw postcode en huisnummer"
+          placeholder="Type uw postcode en huisnummer ex: 1234ab 99"
         />
         <Button primary onClick={onButtonClick}>
           Volgende

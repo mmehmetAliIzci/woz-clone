@@ -1,10 +1,10 @@
 import { mapDataToSearchValues } from './mapDataToSearchValues';
 import { parseAddress } from './parseAddress';
 
-export const DEFAULT_LABEL = '';
-export const TYPE_HOUSE_POSTCODE = 'Type your postcode and house number';
-export const TYPE_HOUSE = 'Type your house number';
-export const SOMETHING_WRONG = 'Something went wrong';
+export const DEFAULT_LABEL = '1234ab 99';
+export const TYPE_HOUSE_POSTCODE = 'Type uw postcode en huisnummer ex: 1234ab 99';
+export const TYPE_HOUSE = 'Type uw huisnummer ';
+export const SOMETHING_WRONG = 'Er its fouts gegaan';
 
 export const defaultDisabledValue = {
   value: '',
