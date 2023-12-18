@@ -53,4 +53,4 @@ Developed as part of a technical assessment, this project aims to replicate key 
 
 ## Initial Completion Date and Duration Spent
 
-September 2023 - Approximately 15 hours spent
+Jan 2022 - Approximately 15 hours spent
